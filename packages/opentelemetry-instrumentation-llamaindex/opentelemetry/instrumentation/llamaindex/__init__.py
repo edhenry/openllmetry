@@ -7,11 +7,23 @@ from opentelemetry.trace import get_tracer
 from opentelemetry.instrumentation.instrumentor import BaseInstrumentor
 
 from opentelemetry.instrumentation.llamaindex.retriever_query_engine_instrumentor import (
-    RetrieverQueryEngineInstrumentor)
-from opentelemetry.instrumentation.llamaindex.base_retriever_instrumentor import BaseRetrieverInstrumentor
-from opentelemetry.instrumentation.llamaindex.base_synthesizer_instrumentor import BaseSynthesizerInstrumentor
-from opentelemetry.instrumentation.llamaindex.base_embedding_instrumentor import BaseEmbeddingInstrumentor
-from opentelemetry.instrumentation.llamaindex.custom_llm_instrumentor import CustomLLMInstrumentor
+    RetrieverQueryEngineInstrumentor,
+)
+from opentelemetry.instrumentation.llamaindex.base_retriever_instrumentor import (
+    BaseRetrieverInstrumentor,
+)
+from opentelemetry.instrumentation.llamaindex.base_synthesizer_instrumentor import (
+    BaseSynthesizerInstrumentor,
+)
+from opentelemetry.instrumentation.llamaindex.base_embedding_instrumentor import (
+    BaseEmbeddingInstrumentor,
+)
+from opentelemetry.instrumentation.llamaindex.custom_llm_instrumentor import (
+    CustomLLMInstrumentor,
+)
+from opentelemetry.instrumentation.llamaindex.base_chatengine_instrumentor import (
+    BaseChatEngineInstrumentor,
+)
 from opentelemetry.instrumentation.llamaindex.version import __version__
 
 logger = logging.getLogger(__name__)
@@ -34,6 +46,7 @@ class LlamaIndexInstrumentor(BaseInstrumentor):
         BaseSynthesizerInstrumentor(tracer).instrument()
         BaseEmbeddingInstrumentor(tracer).instrument()
         CustomLLMInstrumentor(tracer).instrument()
+        BaseChatEngineInstrumentor(tracer).instrument()
 
     def _uninstrument(self, **kwargs):
         pass
